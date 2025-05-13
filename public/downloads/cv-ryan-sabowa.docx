@@ -1,0 +1,20 @@
+PK
+     ��vX               _rels/PK
+     ��vX            	   docProps/PK
+     ��vX               word/PK
+     ��vX               word/_rels/PK
+     ��vX               word/theme/PK
+     ��vX               word/media/PK 
+     ��vX            
+   word/document.xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+  <w:body>
+    <w:p>
+      <w:r>
+        <w:t>CV Ryan Sabowa - Développeur Full Stack</w:t>
+      </w:r>
+    </w:p>
+  </w:body>
+</w:document>
+PK 
