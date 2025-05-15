@@ -9,12 +9,41 @@ import { Toaster as HotToaster } from 'react-hot-toast';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
+// Déclarer les types pour étendre l'interface Window
+declare global {
+    interface Window {
+        locale: string;
+        translations: Record<string, any>;
+    }
+}
+
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => resolvePageComponent(`./pages/${name}.tsx`, import.meta.glob('./pages/**/*.tsx')),
     setup({ el, App, props }) {
-        const root = createRoot(el);
+        console.log('Initialisation Inertia - props complètes:', props);
+        
+        // Initialiser les variables globales avec les données partagées directement depuis props
+        try {
+            if (props && typeof props === 'object') {
+                // Les données partagées sont directement sur l'objet props
+                const sharedProps = props as any; // Cast pour accéder aux propriétés dynamiquement
 
+                if (sharedProps.locale) {
+                    window.locale = sharedProps.locale as string;
+                }
+
+                if (sharedProps.translations) {
+                    window.translations = sharedProps.translations as Record<string, any>;
+                }
+            } else {
+                console.warn('props n\'est pas un objet valide ou est nul.', props); // Log d'avertissement (peut être conservé si utile)
+            }
+        } catch (error) {
+            console.error('Erreur lors de la récupération des données partagées dans setup:', error);
+        }
+        
+        const root = createRoot(el);
         root.render(
             <>
                 <App {...props} />
@@ -39,3 +68,4 @@ createInertiaApp({
 
 // This will set light / dark mode on load...
 initializeTheme();
+

@@ -227,5 +227,20 @@
     "Web Server is Down": "Le serveur Web est en panne",
     "Whoops!": "Oups !",
     "Yes": "Oui",
-    "You are receiving this email because we received a password reset request for your account.": "Vous recevez cet e-mail car nous avons reçu une demande de réinitialisation de mot de passe pour votre compte."
+    "You are receiving this email because we received a password reset request for your account.": "Vous recevez cet e-mail car nous avons reçu une demande de réinitialisation de mot de passe pour votre compte.",
+    "email_required": "L'adresse e-mail est requise.",
+    "email_invalid": "L'adresse e-mail n'est pas valide.",
+    "email_already_subscribed": "Cette adresse e-mail est déjà inscrite.",
+    "subscribed": "Inscription réussie !",
+    "error": "Une erreur s'est produite. Veuillez réessayer.",
+    "email_placeholder": "Entrez votre adresse e-mail",
+    "subscribe": "S'inscrire",
+    "privacy_notice": "Nous respectons votre vie privée. Vos informations ne seront pas partagées.",
+    "coming_soon": "Bientôt disponible",
+    "countdown_started": "Le compte à rebours est lancé",
+    "days": "jours",
+    "hours": "heures",
+    "minutes": "minutes",
+    "seconds": "secondes",
+    "new_experience_time": "Une nouvelle expérience arrive le :date."
 }

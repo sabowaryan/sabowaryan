@@ -17,7 +17,7 @@ class SubscribeController extends Controller
 
         if ($validator->fails()) {
             return back()->withErrors([
-                'email' => __('validation.unique', ['attribute' => 'email']),
+                'email' => __('email_already_subscribed'),
             ]);
         }
 

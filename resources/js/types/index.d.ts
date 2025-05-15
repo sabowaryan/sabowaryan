@@ -1,6 +1,18 @@
 import { LucideIcon } from 'lucide-react';
 import type { Config } from 'ziggy-js';
 
+export interface User {
+    id: number;
+    name: string;
+    email: string;
+    email_verified_at?: string | null;
+    created_at?: string;
+    updated_at?: string;
+    avatar?: string;
+    role?: string;
+    [key: string]: unknown; // Permet des propriétés additionnelles
+}
+
 export interface Auth {
     user: User;
 }
@@ -8,6 +20,7 @@ export interface Auth {
 export interface BreadcrumbItem {
     title: string;
     href: string;
+    current?: boolean;
 }
 
 export interface NavGroup {
@@ -22,24 +35,16 @@ export interface NavItem {
     isActive?: boolean;
 }
 
+// Type pour les données partagées globalement dans l'application
 export interface SharedData {
     name: string;
     quote: { message: string; author: string };
     auth: Auth;
     ziggy: Config & { location: string };
     sidebarOpen: boolean;
-    [key: string]: unknown;
-}
-
-export interface User {
-    id: number;
-    name: string;
-    email: string;
-    avatar?: string;
-    email_verified_at: string | null;
-    created_at: string;
-    updated_at: string;
-    [key: string]: unknown; // This allows for additional properties...
+    locale: string;
+    translations: Record<string, Record<string, any>>;
+    [key: string]: unknown; // Index signature pour satisfaire la contrainte PageProps
 }
 
 // CV Interfaces

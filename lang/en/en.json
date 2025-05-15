@@ -227,5 +227,20 @@
     "Web Server is Down": "Web Server is Down",
     "Whoops!": "Whoops!",
     "Yes": "Yes",
-    "You are receiving this email because we received a password reset request for your account.": "You are receiving this email because we received a password reset request for your account."
+    "You are receiving this email because we received a password reset request for your account.": "You are receiving this email because we received a password reset request for your account.",
+    "email_required": "Email address is required.",
+    "email_invalid": "Email address is not valid.",
+    "email_already_subscribed": "This email address is already subscribed.",
+    "subscribed": "Subscribed successfully!",
+    "error": "An error occurred. Please try again.",
+    "email_placeholder": "Enter your email address",
+    "subscribe": "Subscribe",
+    "privacy_notice": "We respect your privacy. Your information will not be shared.",
+    "coming_soon": "Coming Soon",
+    "countdown_started": "The countdown has started",
+    "days": "days",
+    "hours": "hours",
+    "minutes": "minutes",
+    "seconds": "seconds",
+    "new_experience_time": "A new experience is coming on :date."
 }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Log;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -48,13 +49,18 @@ class HandleInertiaRequests extends Middleware
             'role' => $this->getUserHighestRole($user),
         ] : null;
 
-        // Exemple d'utilisation du helper lang() pour partager des traductions JSON
-        $translations = [
-            'subscribed' => lang('Subscribed!'),
-            'error' => lang('An error occurred. Please try again.'),
-        ];
+        // Récupérer la locale actuelle
+        // Utiliser la locale de l'application si aucune autre n'est définie
+        $locale = app()->getLocale() ?: config('app.fallback_locale');
+        
+        // Utiliser la fonction lang() pour charger les traductions
+        // La fonction va automatiquement gérer le cache et les erreurs
+        $translations = lang($locale);
+        
+      
 
-        return [
+        // Préparer le tableau de données partagées
+        $shared = [
             ...parent::share($request),
             'name' => config('app.name'),
             'quote' => ['message' => trim($message), 'author' => trim($author)],
@@ -66,9 +72,14 @@ class HandleInertiaRequests extends Middleware
                 'location' => $request->url(),
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
-            'locale' => App::getLocale(),
-            'translations' => $translations,
+            'translations' => [
+                $locale => $translations
+            ],
+            'locale' => $locale,
         ];
+        
+      
+        return $shared;
     }
 
     /**
