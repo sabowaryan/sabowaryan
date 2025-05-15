@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { COMING_SOON_DAYS } from "@/config/comingSoonDate";
 import AppLogo from '@/components/app-logo';
 import { toast } from 'react-hot-toast';
-import { useForm, usePage, Head } from '@inertiajs/react';
+import { useForm, usePage } from '@inertiajs/react';
 import { PageProps as InertiaPageProps } from '@inertiajs/core';
 import { __, trans_choice, getLocale } from '@/helpers/translations';
 
@@ -266,13 +266,13 @@ export const CountdownTimer = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  // Définir le titre de la page via le DOM
+  useEffect(() => {
+    document.title = `${__('coming_soon')} | Herd`;
+  }, []);
+
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden">
-      <Head>
-        <title>{__('coming_soon')} | Herd</title>
-        <meta name="description" content={__('new_experience_time', { date: targetDate.toLocaleDateString(getLocale() === 'fr' ? 'fr-FR' : 'en-US') })} />
-      </Head>
-      
       {/* Fond avec effet de particules */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-900 via-purple-900 to-black"></div>
