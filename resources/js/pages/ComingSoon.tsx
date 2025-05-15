@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { COMING_SOON_DAYS } from "@/config/comingSoonDate";
+import { COMING_SOON_DATE, isLaunchDatePassed } from "@/config/comingSoonDate";
 import AppLogo from '@/components/app-logo';
 import { toast } from 'react-hot-toast';
 import { useForm, usePage } from '@inertiajs/react';
@@ -240,17 +240,16 @@ const SubscribeForm = () => {
 };
 
 export const CountdownTimer = () => {
-  const targetDate = React.useMemo(() => {
-    const d = new Date();
-    d.setDate(d.getDate() + COMING_SOON_DAYS);
-    d.setHours(10, 0, 0, 0);
-    return d;
-  }, []);
-
+  // Utiliser directement la date définie dans la configuration
+  const targetDate = COMING_SOON_DATE;
   const [time, setTime] = useState(getTimeLeft(targetDate));
+  const [isLaunched, setIsLaunched] = useState(isLaunchDatePassed());
 
   useEffect(() => {
-    const timer = setInterval(() => setTime(getTimeLeft(targetDate)), 1000);
+    const timer = setInterval(() => {
+      setTime(getTimeLeft(targetDate));
+      setIsLaunched(isLaunchDatePassed());
+    }, 1000);
     return () => clearInterval(timer);
   }, [targetDate]);
 
@@ -270,6 +269,14 @@ export const CountdownTimer = () => {
   useEffect(() => {
     document.title = `${__('coming_soon')} | Herd`;
   }, []);
+
+  // Rediriger si la date est passée
+  useEffect(() => {
+    if (isLaunched) {
+      // Rediriger vers la page d'accueil si la date est passée
+      window.location.href = '/';
+    }
+  }, [isLaunched]);
 
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden">
